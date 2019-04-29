@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CocktailrXamarin.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,9 +7,14 @@ namespace CocktailrXamarin
 {
     public partial class App : Application
     {
+        public static CocktailViewModel cocktailViewModel { get; } = new CocktailViewModel();
+
         public App()
         {
             InitializeComponent();
+
+            cocktailViewModel.FetchIngredients();
+            cocktailViewModel.FetchCocktailsByIngredient("Tequila");
 
             MainPage = new MainPage();
         }
