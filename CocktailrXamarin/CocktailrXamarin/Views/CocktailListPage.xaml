@@ -1,12 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CocktailrXamarin.Views.CocktailListPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="CocktailrXamarin.Views.CocktailListPage"
+             Padding="5"
+             Title="Cocktailr">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="iconexample" Icon="search.png" Priority="0" Order="Primary" Activated="ToolbarItem_OnActivated" />
+    </ContentPage.ToolbarItems>
+
+    <ListView ItemsSource="{Binding Cocktails}" CachingStrategy="RecycleElement" RowHeight="100" ItemTapped="ListView_OnItemTapped">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Margin="5" Orientation="Horizontal">
+                        <Image Source="{Binding ImageUrl}" WidthRequest="90" HeightRequest="90" />
+                        <StackLayout VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{Binding Name}" 
+                               FontSize="Medium" />
+                            <Label Text="{Binding Id, StringFormat='ID: {0}'}" 
+                               FontSize="Small" />
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
 </ContentPage>

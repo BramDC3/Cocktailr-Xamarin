@@ -93,6 +93,7 @@ namespace CocktailrXamarin.Network
                     cocktail.Instructions = result.strInstructions;
                     cocktail.Ingredients = GetIngredients(result);
                     cocktail.Measurements = GetMeasurements(result);
+                    AddBlankMeasurements(cocktail);
                 }
                 else
                 {
@@ -118,6 +119,14 @@ namespace CocktailrXamarin.Network
             return new List<string> {
                 c.strMeasure1, c.strMeasure2, c.strMeasure3, c.strMeasure4, c.strMeasure5, c.strMeasure6, c.strMeasure7, c.strMeasure8, c.strMeasure9, c.strMeasure10, c.strMeasure11, c.strMeasure12, c.strMeasure13, c.strMeasure14, c.strMeasure15
             }.Where(i => i != "" && i != " " && i != "\n" && i != null).ToList();
+        }
+
+        void AddBlankMeasurements(Cocktail cocktail)
+        {
+            while (cocktail.Ingredients.Count > cocktail.Measurements.Count)
+            {
+                cocktail.Measurements.Add("");
+            }
         }
     }
 

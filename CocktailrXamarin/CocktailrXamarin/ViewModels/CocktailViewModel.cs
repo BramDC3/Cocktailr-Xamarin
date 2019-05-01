@@ -3,6 +3,8 @@ using CocktailrXamarin.Models;
 using CocktailrXamarin.Network;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,15 +21,22 @@ namespace CocktailrXamarin.ViewModels
             set { _selectedCocktail = value; RaisePropertyChanged(nameof(SelectedCocktail)); }
         }
 
-        private List<string> _ingredients;
-        public List<string> Ingredients
+        private List<string> _ingredients = new List<string>();
+        private List<string> Ingredients
         {
             get => _ingredients;
-            set { _ingredients = value; RaisePropertyChanged(nameof(Ingredients)); }
+            set { _ingredients = value; FilterIngredients(""); }
         }
 
-        private List<Cocktail> _cocktails;
-        public List<Cocktail> Cocktails
+        private ObservableCollection<string> _filteredIngredients = new ObservableCollection<string>();
+        public ObservableCollection<string> FilteredIngredients
+        {
+            get => _filteredIngredients;
+            set { _filteredIngredients = value; RaisePropertyChanged(nameof(FilteredIngredients)); }
+        }
+
+        private ObservableCollection<Cocktail> _cocktails = new ObservableCollection<Cocktail>();
+        public ObservableCollection<Cocktail> Cocktails
         {
             get => _cocktails;
             set { _cocktails = value; RaisePropertyChanged(nameof(Cocktails)); }
@@ -40,8 +49,13 @@ namespace CocktailrXamarin.ViewModels
 
         public async Task FetchIngredients() => Ingredients = await cocktailApi.GetAllIngredients();
 
-        public async Task FetchCocktailsByIngredient(string ingredient) => Cocktails = await cocktailApi.GetCocktailsByIngredient(ingredient);
+        public async Task FetchCocktailsByIngredient(string ingredient) => Cocktails = new ObservableCollection<Cocktail>(await cocktailApi.GetCocktailsByIngredient(ingredient));
 
         public async Task FetchCocktailById(Cocktail cocktail) => SelectedCocktail = await cocktailApi.GetCocktailById(cocktail);
+
+        public void FilterIngredients(string filter)
+        {
+            FilteredIngredients = filter == "" ? new ObservableCollection<string>(Ingredients) : new ObservableCollection<string>(Ingredients.Where((i) => i.ToLower().Contains(filter.ToLower())));
+        }
     }
 }

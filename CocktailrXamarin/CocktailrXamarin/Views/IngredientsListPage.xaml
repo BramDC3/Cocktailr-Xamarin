@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CocktailrXamarin.Views.IngredientsListPage"
+             Title="Search by ingredient">
+
+    <StackLayout>
+        <Entry Margin="10" Placeholder="Search by ingredient..." TextChanged="Entry_OnTextChanged" />
+        <ListView ItemsSource="{Binding FilteredIngredients}" CachingStrategy="RecycleElement" ItemTapped="ListView_OnItemTapped" RowHeight="64" >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Margin="20" Orientation="Horizontal" VerticalOptions="Center" >
+                        <Image Source="cocktail.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="{Binding .}" FontSize="Medium" Margin="20,0,0,0" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CocktailrXamarin.Views.CocktailDetailPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="{Binding ImageUrl}" />
+                <StackLayout Padding="15">
+                    <Label Text="{Binding Name}" 
+                           FontSize="Large"  HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Category, StringFormat='Category: {0}'}" 
+                           FontSize="Medium" HorizontalTextAlignment="Center" Margin="0, 0, 0, 5" />
+                    <Label Text="{Binding Instructions}" 
+                           FontSize="Small" />
+                    
+                    
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
