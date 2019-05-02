@@ -162,12 +162,13 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\CocktailrXamarin\CocktailrXamarin.csproj">
-      <Project>{74EE0904-268D-499B-9997-E06417A3ADFA}</Project>
+      <Project>{968E3518-0218-4043-A10F-7EEA964E92C8}</Project>
       <Name>CocktailrXamarin</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\cocktail_example.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\addphoto.png" />

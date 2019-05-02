@@ -15,6 +15,16 @@ namespace CocktailrXamarin.Views
 		public AddSuggestionPage ()
 		{
 			InitializeComponent ();
-		}
-	}
+        }
+
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+
+        }
+
+        void Handle_Clicked_1(object sender, System.EventArgs e)
+        {
+
+        }
+    }
 }

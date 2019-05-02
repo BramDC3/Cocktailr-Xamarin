@@ -91,9 +91,7 @@ namespace CocktailrXamarin.Network
                     var result = JsonConvert.DeserializeObject<GetCocktailById>(content).drinks[0];
                     cocktail.Category = result.strCategory;
                     cocktail.Instructions = result.strInstructions;
-                    cocktail.Ingredients = GetIngredients(result);
-                    cocktail.Measurements = GetMeasurements(result);
-                    AddBlankMeasurements(cocktail);
+                    cocktail.IngredientMeasurements = GetIngredientMeasurements(result);
                 }
                 else
                 {
@@ -121,12 +119,17 @@ namespace CocktailrXamarin.Network
             }.Where(i => i != "" && i != " " && i != "\n" && i != null).ToList();
         }
 
-        void AddBlankMeasurements(Cocktail cocktail)
+        private List<IngredientMeasurement> GetIngredientMeasurements(GetCocktailByIdDrink c)
         {
-            while (cocktail.Ingredients.Count > cocktail.Measurements.Count)
+            var ingredients = GetIngredients(c);
+            var measurements = GetMeasurements(c);
+
+            while (ingredients.Count > measurements.Count)
             {
-                cocktail.Measurements.Add("");
+                measurements.Add("");
             }
+
+            return ingredients.Select((ing, index) => new IngredientMeasurement(ing, measurements[index])).ToList();
         }
     }
 

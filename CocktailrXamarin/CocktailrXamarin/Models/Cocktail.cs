@@ -9,7 +9,18 @@ namespace CocktailrXamarin.Models
         public string Category { get; set; }
         public string Instructions { get; set; }
         public string ImageUrl { get; set; }
-        public List<string> Ingredients { get; set; } = new List<string>();
-        public List<string> Measurements { get; set; } = new List<string>();
+        public List<IngredientMeasurement> IngredientMeasurements { get; set; } = new List<IngredientMeasurement>();
+    }
+
+   public class IngredientMeasurement
+    {
+        public string Ingredient { get; set; }
+        public string Measurement { get; set; }
+
+        public IngredientMeasurement(string Ingredient, string Measurement)
+        {
+            this.Ingredient = Ingredient;
+            this.Measurement = Measurement;
+        }
     }
 }
