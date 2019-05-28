@@ -6,10 +6,10 @@
     <ContentPage.Content>
         <ScrollView Padding="20">
             <StackLayout>
-                <Image Source="cocktail_example.jpg" Margin="0, 0, 0, 10" />
+                <Image x:Name="image" Source="cocktail_example.jpg" Margin="0, 0, 0, 10" />
                 <StackLayout>
                     <Label Text="Name" FontSize="Medium" />
-                    <Entry Margin="0, 0, 0, 5" />
+                    <Entry x:Name="cocktailName" Margin="0, 0, 0, 5" />
                     <Label Text="Category" FontSize="Medium" />
                     <Picker Margin="0, 0, 0, 5">
                         <Picker.ItemsSource>
@@ -25,11 +25,11 @@
                         <Picker.SelectedIndex>0</Picker.SelectedIndex>
                     </Picker>
                     <Label Text="Description" FontSize="Medium" />
-                    <Editor Margin="0, 0, 0, 10" HeightRequest="110" />
+                    <Editor x:Name="cocktailDescription" Margin="0, 0, 0, 10" HeightRequest="110" />
                     <StackLayout Orientation="Horizontal">
                         <Button Text="Add suggestion" Clicked="Handle_Clicked" HorizontalOptions="FillAndExpand"
                                 BackgroundColor="Red" TextColor="White"/>
-                        <ImageButton Source="camera.png" Clicked="Handle_Clicked_1" Padding="8"
+                        <ImageButton Source="camera.png" Clicked="Handle_Clicked_1Async" Padding="8"
                                      BackgroundColor="Red"/>
                     </StackLayout>
                 </StackLayout>
